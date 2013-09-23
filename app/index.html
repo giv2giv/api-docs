@@ -45,7 +45,7 @@
 
     <div class="">
 
-      <api-docs url="www.giv2giv.org/api" proxy="" ssl="true" desc="Live docs for the Giv2Giv API">
+      <api-docs url="api.giv2giv.org/api" proxy="" ssl="true" desc="Live docs for the Giv2Giv API">
 
           
           
@@ -84,7 +84,7 @@
                     default="Super@!rdUnguess#!@Passw*rd"/>
           </endpoint>
 
-          <endpoint url="/sessions/destroy.json "
+          <endpoint url="/sessions/destroy.json"
                     method="post"
                     format="json" 
                     description="Sign out destroy token"
@@ -166,17 +166,17 @@
           <endpoint url="/charity_group/{{param.id}}/add_charity.json"
                     method="post" 
                     format="json"
-                    description="Create a new charity group to this group">
+                    description="Add a new charity to charity group">
 
             <param name="id" 
                     type="url" 
-                    description="Id of the charity group account" 
+                    description="Id of the charity group" 
                     default="1234"></param>
             
-            <param name="name" 
+            <param name="charity_id" 
                     type="string" 
-                    description="The name for this charity group" 
-                    default="Giv2Giv" 
+                    description="The id of the charity" 
+                    default="1234" 
                     required="true"></param>
          
           </endpoint>
@@ -184,21 +184,42 @@
           <endpoint url="/charity_group.json"
                     method="get" 
                     format="json"
-                    description="Get a list of charity groups">
+                    description="Get a list of charity groups"
+                    auth="true">
          
           </endpoint>
 
           <endpoint url="/charity_group.json"
                     method="post" 
                     format="json"
-                    description="Create a new charity group">
+                    description="Create a new charity group"
+                    auth="true">
+
+              <param name="name" 
+                    type="string" 
+                    description="The name for this charity group" 
+                    default="My Endowment" 
+                    required="true"></param>
+
+              <param name="amount" 
+                    type="string" 
+                    description="Minimum donation amount" 
+                    default="5.00" 
+                    required="true"></param>
+
+              <param name="description" 
+                    type="string" 
+                    description="Description of charity group" 
+                    default="A short description of charity group" 
+                    required="true"></param>
          
           </endpoint>
 
           <endpoint url="/charity_group/{{param.id}}.json"
                     method="get" 
                     format="json"
-                    description="Get the details of a specific charity group">
+                    description="Get the details of a specific charity group"
+                    auth="true">
 
             <param name="id" 
                     type="url" 
@@ -210,7 +231,8 @@
           <endpoint url="/charity_group/{{param.id}}.json"
                     method="put" 
                     format="json"
-                    description="Update the details of a specific charity group">
+                    description="Update the details of a specific charity group"
+                    auth="true">
   
             <!-- <uri name="charity_id" 
                     type="url" 
@@ -280,7 +302,7 @@
                    default="1234"/>
           </endpoint>
 
-           <endpoint url="/donors/payment_accounts/{{param.id}}.json"          
+           <endpoint url="/donors/payment_accounts/{{param.id}}.json"
                      method="put" 
                      format="json" 
                      description="Update a specific payment account" 
