@@ -73,7 +73,7 @@
             <param name="password" type="string" description="The password used to authenticate the user" default="Super@!rdUnguess#!@Passw*rd">
           </endpoint>
 
-          <endpoint url="/sessions/destroy.json " method="post" format="json" description="Sign out destroy token" auth="true">
+          <endpoint url="/sessions/destroy.json" method="post" format="json" description="Sign out destroy token" auth="true">
           </endpoint>
           
           <h3 class="white-text-shadow">DONOR MANAGEMENT</h3>
@@ -110,29 +110,35 @@
 
           <h3 class="white-text-shadow">CHARITY GROUP MANAGEMENT</h3>
 
-          <endpoint url="/charity_group/{{param.id}}/add_charity.json" method="post" format="json" description="Create a new charity group to this group">
+          <endpoint url="/charity_group/{{param.id}}/add_charity.json" method="post" format="json" description="Add a new charity to charity group">
 
-            <param name="id" type="url" description="Id of the charity group account" default="1234">
+            <param name="id" type="url" description="Id of the charity group" default="1234">
             
-            <param name="name" type="string" description="The name for this charity group" default="Giv2Giv" required="true">
+            <param name="charity_id" type="string" description="The id of the charity" default="1234" required="true">
          
           </endpoint>
 
-          <endpoint url="/charity_group.json" method="get" format="json" description="Get a list of charity groups">
+          <endpoint url="/charity_group.json" method="get" format="json" description="Get a list of charity groups" auth="true">
          
           </endpoint>
 
-          <endpoint url="/charity_group.json" method="post" format="json" description="Create a new charity group">
+          <endpoint url="/charity_group.json" method="post" format="json" description="Create a new charity group" auth="true">
+
+              <param name="name" type="string" description="The name for this charity group" default="My Endowment" required="true">
+
+              <param name="amount" type="string" description="Minimum donation amount" default="5.00" required="true">
+
+              <param name="description" type="string" description="Description of charity group" default="A short description of charity group" required="true">
          
           </endpoint>
 
-          <endpoint url="/charity_group/{{param.id}}.json" method="get" format="json" description="Get the details of a specific charity group">
+          <endpoint url="/charity_group/{{param.id}}.json" method="get" format="json" description="Get the details of a specific charity group" auth="true">
 
             <param name="id" type="url" description="Id of the charity group account" default="1234">
          
           </endpoint>
 
-          <endpoint url="/charity_group/{{param.id}}.json" method="put" format="json" description="Update the details of a specific charity group">
+          <endpoint url="/charity_group/{{param.id}}.json" method="put" format="json" description="Update the details of a specific charity group" auth="true">
   
             <!-- <uri name="charity_id" 
                     type="url" 
