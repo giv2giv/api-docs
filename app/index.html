@@ -163,7 +163,7 @@
 
           <h3 class="white-text-shadow">CHARITY GROUP MANAGEMENT</h3>
 
-          <endpoint url="/charity_group/{{param.id}}/add_charity.json"
+          <endpoint url="/endowment/{{param.id}}/add_charity.json"
                     method="post" 
                     format="json"
                     description="Add a new charity to charity group">
@@ -181,7 +181,7 @@
          
           </endpoint>
 
-          <endpoint url="/charity_group.json"
+          <endpoint url="/endowment.json"
                     method="get" 
                     format="json"
                     description="Get a list of charity groups"
@@ -189,7 +189,7 @@
          
           </endpoint>
 
-          <endpoint url="/charity_group.json"
+          <endpoint url="/endowment.json"
                     method="post" 
                     format="json"
                     description="Create a new charity group"
@@ -215,7 +215,7 @@
          
           </endpoint>
 
-          <endpoint url="/charity_group/{{param.id}}.json"
+          <endpoint url="/endowment/{{param.id}}.json"
                     method="get" 
                     format="json"
                     description="Get the details of a specific charity group"
@@ -228,7 +228,7 @@
          
           </endpoint>
 
-          <endpoint url="/charity_group/{{param.id}}.json"
+          <endpoint url="/endowment/{{param.id}}.json"
                     method="put" 
                     format="json"
                     description="Update the details of a specific charity group"
@@ -355,7 +355,7 @@
                     default="20" 
                     required="true"/>
 
-             <param name="charity_group_id"
+             <param name="endowment_id"
                     type="integer"
                     description="Id of charity group to make donation to." 
                     default="13" 

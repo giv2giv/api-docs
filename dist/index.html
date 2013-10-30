@@ -110,7 +110,7 @@
 
           <h3 class="white-text-shadow">CHARITY GROUP MANAGEMENT</h3>
 
-          <endpoint url="/charity_group/{{param.id}}/add_charity.json" method="post" format="json" description="Add a new charity to charity group">
+          <endpoint url="/endowment/{{param.id}}/add_charity.json" method="post" format="json" description="Add a new charity to charity group">
 
             <param name="id" type="url" description="Id of the charity group" default="1234">
             
@@ -118,11 +118,11 @@
          
           </endpoint>
 
-          <endpoint url="/charity_group.json" method="get" format="json" description="Get a list of charity groups" auth="true">
+          <endpoint url="/endowment.json" method="get" format="json" description="Get a list of charity groups" auth="true">
          
           </endpoint>
 
-          <endpoint url="/charity_group.json" method="post" format="json" description="Create a new charity group" auth="true">
+          <endpoint url="/endowment.json" method="post" format="json" description="Create a new charity group" auth="true">
 
               <param name="name" type="string" description="The name for this charity group" default="My Endowment" required="true">
 
@@ -132,13 +132,13 @@
          
           </endpoint>
 
-          <endpoint url="/charity_group/{{param.id}}.json" method="get" format="json" description="Get the details of a specific charity group" auth="true">
+          <endpoint url="/endowment/{{param.id}}.json" method="get" format="json" description="Get the details of a specific charity group" auth="true">
 
             <param name="id" type="url" description="Id of the charity group account" default="1234">
          
           </endpoint>
 
-          <endpoint url="/charity_group/{{param.id}}.json" method="put" format="json" description="Update the details of a specific charity group" auth="true">
+          <endpoint url="/endowment/{{param.id}}.json" method="put" format="json" description="Update the details of a specific charity group" auth="true">
   
             <!-- <uri name="charity_id" 
                     type="url" 
@@ -202,7 +202,7 @@
             
             <param name="amount" type="integer" description="Amount to donate." default="20" required="true">
 
-             <param name="charity_group_id" type="integer" description="Id of charity group to make donation to." default="13" required="true">
+             <param name="endowment_id" type="integer" description="Id of charity group to make donation to." default="13" required="true">
           </endpoint>
 
       </api-docs>
