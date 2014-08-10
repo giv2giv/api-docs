@@ -45,31 +45,14 @@
 
     <div class="">
 
-      <api-docs url="api.giv2giv.org/api" proxy="" ssl="true" desc="  Live docs for the giv2giv.org API">
+      <api-docs url="apitest.giv2giv.org/api" proxy="" ssl="true" desc="  Live docs for the giv2giv.org test API">
           
-          <h3 class="white-text-shadow">SESSION MANAGEMENT</h3>
+          <h3 class="white-text-shadow">Sign in / Sign out</h3>
 
-          <endpoint url="/sessions/create.json" 
+          <endpoint url="/sessions/create.json"
                     method="post" 
                     format="json"
                     description="Create a user session">
-
-<!--        <header name="email" 
-                    type="string" 
-                    description="The email of the user you wish to authenticate."
-                    default="demo@example.com"/>
-            <query name="email" 
-                    type="string" 
-                    description="The email of the user you wish to authenticate."
-                    default="demo@example.com"/>
-            <post name="email" 
-                    type="string" 
-                    description="The email of the user you wish to authenticate."
-                    default="demo@example.com"/>
-            <json name="email" 
-                    type="string" 
-                    description="The email of the user you wish to authenticate."
-                    default="demo@example.com"/> -->
 
             <param name="email" 
                     type="string" 
@@ -82,14 +65,23 @@
                     default="Super@!rdUnguess#!@Passw*rd"/>
           </endpoint>
 
+          <endpoint url="/sessions/ping.json"
+                    method="post"
+                    format="json" 
+                    description="Check if valid token"
+                    auth="true">
+          </endpoint>
+
           <endpoint url="/sessions/destroy.json"
                     method="post"
                     format="json" 
-                    description="Sign out destroy token"
+                    description="Sign out and destroy token"
                     auth="true">
           </endpoint>
+
           
-          <h3 class="white-text-shadow">DONOR MANAGEMENT</h3>
+          
+          <h3 class="white-text-shadow">Donor Endpoints</h3>
 
           <endpoint url="/donors.json" 
                     method="post" 
@@ -151,15 +143,88 @@
                    auth="true">
           </endpoint>
 
+          <endpoint url="/donors/donations.json"
+                   method="get"
+                   format="json"
+                   description="Donations made by this user"
+                   auth="true">
 
-          <h3 class="white-text-shadow">CHARITY MANAGEMENT</h3>
+            <param name="endowment_id"
+                    type="integer" 
+                    description="Id of the endowment" 
+                    default="1234"/>
+            <param name="start_date" 
+                    type="date" 
+                    description="Start date" 
+                    default="2000-01-01"/>
+            <param name="end_date" 
+                    type="date" 
+                    description="End date." 
+                    default="2020-01-01"/>
+            
+
+          </endpoint>
+
+          <endpoint url="/donors/forgot_password.json"
+                    method="put" 
+                    format="json"
+                    description="Send password reset email" 
+                    auth="true">
+
+            <param name="email"
+                   type="string" 
+                   description="Email to send reset instructions & reset token to" 
+                   default="demo@example.com" 
+                   required="true"/>
+
+          </endpoint>
+
+          <endpoint url="/donors/reset_password.json"
+                    method="put" 
+                    format="json"
+                    description="Reset password" 
+                    auth="true">
+
+            <param name="reset_token"
+                   type="string" 
+                   description="token from forgot_password.json email" 
+                   default="9YRr01DshTS9E_wenaqg0w"
+                   required="true"/>
+
+            <param name="password"
+                   type="string" 
+                   description="New password" 
+                   default="Super@!rdUnguess#!@Passw*rd"
+                   required="true"/>
+
+          </endpoint>
+
+
+          <h3 class="white-text-shadow">Charity Endpoints</h3>
 
           <endpoint url="/charity.json"
                     method="get" 
                     format="json"
-                    description="Get a list of charities."
+                    description="Get a list of charities"
                     auth="true">
+            <param name="page" 
+                    type="integer" 
+                    description="Page number" 
+                    default="1"/>
+            <param name="per_page" 
+                    type="integer" 
+                    description="Per page" 
+                    default="5"/>
+            <param name="city" 
+                    type="string" 
+                    description="Limit results to charities in city" 
+                    default=""/>
+            <param name="query" 
+                    type="string" 
+                    description="Search term" 
+                    default="veterans"/>
           </endpoint>
+
 
           <endpoint url="/charity/{{param.id}}.json"
                     method="get" 
@@ -173,79 +238,85 @@
                     default="1234"/>
           </endpoint>
 
-          <h3 class="white-text-shadow">CHARITY GROUP MANAGEMENT</h3>
+          <h3 class="white-text-shadow">Endowment endpoints</h3>
 
           <endpoint url="/endowment.json"
                     method="post" 
                     format="json"
-                    description="Create a new  endowment"
+                    description="Create a new endowment"
                     auth="true">
 
               <param name="name" 
                     type="string" 
-                    description="The name for this  endowment" 
+                    description="The name for this endowment" 
                     default="My Endowment" 
-                    required="true"></param>
+                    required="true"/>
 
-              <param name="amount" 
+              <param name="visibility" 
                     type="string" 
-                    description="Minimum donation amount" 
-                    default="5.00" 
-                    required="true"></param>
+                    description="Public or Private? (Private means not available to other donors)" 
+                    default="public" 
+                    required="true"/>
 
               <param name="description" 
                     type="string" 
-                    description="Description of  endowment" 
-                    default="A short description of  endowment" 
-                    required="true"></param>
+                    description="Description of the endowment" 
+                    default="A short description of the endowment" 
+                    required="true"/>
 
           </endpoint>
 
           <endpoint url="/endowment.json"
                     method="get" 
                     format="json"
-                    description="Get a list of  endowments"
+                    description="Get a list of endowments"
                     auth="true">
-              <param name="query"
-                    stype="string"
-                    description="Search string"
-                    default="Rescue"
-                    required="false"></param>
-
+              <param name="page" 
+                    type="integer" 
+                    description="Page number" 
+                    default="1"/>
+              <param name="per_page" 
+                    type="integer" 
+                    description="Per page" 
+                    default="5"/>
+              <param name="query" 
+                    type="string" 
+                    description="Search term" 
+                    default="hunger"/>
           </endpoint>
 
 
           <endpoint url="/endowment/{{param.id}}/add_charity.json"
                     method="post" 
                     format="json"
-                    description="Add a new charity to  endowment">
+                    description="Add a new charity to endowment">
 
             <param name="id" 
                     type="url" 
                     description="Id of the endowment" 
-                    default="1234"></param>
+                    default="1234"/>
             
             <param name="charity_id" 
                     type="string" 
                     description="The id of the charity" 
                     default="1234" 
-                    required="true"></param>
+                    required="true"/>
          
           </endpoint>
 
           <endpoint url="/endowment/{{param.id}}/remove_charity.json"
                     method="post"
                     format="json"
-                    description="Remove a charity from a  endowment">
+                    description="Remove a charity from an endowment">
             <param name="id"
                     type="url"
                     description="Id of the endowment"
-                    default="1234"></param>
+                    default="1234"/>
             <param name="charity_id"
                     type="string"
                     description="The id of the charity"
                     default="1234"
-                    required="true"></param>
+                    required="true"/>
           </endpoint>
 
 
@@ -259,19 +330,13 @@
                     type="string" 
                     description="The name for this endowment" 
                     default="My Endowment" 
-                    required="true"></param>
-
-              <param name="amount" 
-                    type="string" 
-                    description="Minimum donation amount" 
-                    default="5.00" 
-                    required="true"></param>
+                    required="true"/>
 
               <param name="description" 
                     type="string" 
                     description="Description of endowment" 
                     default="A short description of the endowment" 
-                    required="true"></param>
+                    required="true"/>
 
           </endpoint>
 
@@ -285,76 +350,67 @@
             <param name="id" 
                     type="url" 
                     description="Id of the endowment account" 
-                    default="1234"></param>
+                    default="1234"/>
          
           </endpoint>
 
-          <endpoint url="/endowment/{{param.id}}/share_balance.json"
+
+          <endpoint url="/endowment/my_endowments.json"
                     method="get" 
                     format="json"
-                    description="Get the share balance of a specific endowment"
+                    description="Show endowments I created"
                     auth="true">
-
-            <param name="id" 
-                    type="url" 
-                    description="Id of the endowment account" 
-                    default="1234"></param>
-
           </endpoint>
 
-          <!--
-
-          PUT not implemented in API  - see rename_endowment
-
-          <endpoint url="/endowment/{{param.id}}.json"
-                    method="put" 
+          <endpoint url="/endowment/find_by_slug.json"
+                    method="get" 
                     format="json"
-                    description="Update the details of a specific  endowment"
+                    description="Find endowment by slug"
                     auth="true">
-  
-            <uri name="charity_id" 
-                    type="url" 
-                    description="Id of the endowment account" 
-                    default="1234"></uri>
-            <header name="charity_id" 
-                  type="integer" 
-                  description="Id of the endowment account" 
-                  default="1234"></header>
-            <query name="charity_id" 
-                  type="url" 
-                  description="Id of the endowment account" 
-                  default="1234"></query>
-            <post name="charity_id" 
-                  type="url" 
-                  description="Id of the endowment account." 
-                  default="1234"></post>
-            <json name="charity_id" 
-                  type="url" 
-                  description="Id of the endowment account." 
-                  default="1234"></json>
-
-            <param name="id" 
-                    type="url" 
-                    description="Id of the endowment account." 
-                    default="1234"></param>
-         
+              <param name="slug" 
+                    type="string" 
+                    description="URL-friendly endowment name"
+                    default="the-hunger-endowment"/>
           </endpoint>
 
-          -->
+          <endpoint url="/endowment/{{param.id}}/anonymous_donation.json"
+                    method="get" 
+                    format="json"
+                    description="Make donation to endowment without giv2giv account"
+                    auth="true">
+              <param name="id" 
+                    type="url" 
+                    description="Id of the endowment account" 
+                    default="1234"/>
+              <param name="acceptedTerms" 
+                    type="bool" 
+                    description="true/false - must be true for API to succeed" 
+                    default="true"/>
+              <param name="stripeToken" 
+                    type="string" 
+                    description="stripe.com token from stripe.js" 
+                    default="longToken"/>
+              <param name="amount" 
+                    type="number" 
+                    description="Amount to donate" 
+                    default="25.00"/>
+          </endpoint>
 
-          <h3 class="white-text-shadow">PAYMENT ACCOUNT MANAGEMENT</h3>
+
+
+          <h3 class="white-text-shadow">Payment Account Endpoints</h3>
 
           <endpoint url="/donors/payment_accounts.json"
                     method="get"
                     format="json" 
-                    description="Get donor accounts."
+                    description="Get donor accounts"
                     auth="true">
           </endpoint>
 
           <endpoint url="/donors/payment_accounts.json" 
                     method="post" 
                     format="json" 
-                    description="Create a new donor." 
+                    description="Create a new donor" 
                     auth="true">
 
             <param name="processor" 
@@ -365,7 +421,7 @@
 
             <param name="token" 
                     type="string" 
-                    description="Payment token." 
+                    description="Payment token" 
                     default="1asdf23" 
                     required="true"/>
           </endpoint>
@@ -378,7 +434,7 @@
 
             <param name="id" 
                    type="url" 
-                   description="Id of the payment account." 
+                   description="Id of the payment account" 
                    default="1234"/>
           </endpoint>
 
@@ -390,7 +446,7 @@
 
              <param name="id" 
                     type="url" 
-                    description="Id of the payment account." 
+                    description="Id of the payment account" 
                     default="1234"/>
 
              <param name="processor" 
@@ -408,7 +464,7 @@
 
              <param name="id" 
                     type="url" 
-                    description="Id of the payment account." 
+                    description="Id of the payment account" 
                     default="1234"/>
 
              <param name="processor" 
@@ -418,6 +474,9 @@
                     required="true"/>
           </endpoint>
 
+
+          <h3 class="white-text-shadow">Endowment Subscription Endpoints</h3>
+
           <endpoint url="/donors/payment_accounts/{{param.id}}/donate_subscription.json" 
                     method="post" 
                     format="json" 
@@ -426,22 +485,99 @@
 
             <param name="id" 
                    type="url" 
-                   description="Id of the payment account." 
+                   description="Id of the payment account" 
                    default="1234"/>
             
             <param name="amount" 
                     type="integer" 
-                    description="Amount to donate." 
+                    description="Amount to donate" 
                     default="20" 
                     required="true"/>
 
              <param name="endowment_id"
                     type="integer"
-                    description="Id of the endowment to make donation to." 
+                    description="Id of the endowment to make donation to" 
                     default="13" 
                     required="true"/>
           </endpoint>
 
+
+          <endpoint url="/donors/payment_accounts/{{param.id}}/cancel_subscription.json"
+                    method="post" 
+                    format="json" 
+                    description="Cancel a single subscription" 
+                    auth="true">
+
+             <param name="id" 
+                    type="url" 
+                    description="Id of the *subscription* to cancel" 
+                    default="1234"/>
+          </endpoint>
+
+          <endpoint url="/donors/payment_accounts/cancel_all_subscriptions.json"
+                    method="post" 
+                    format="json" 
+                    description="Cancel all subscriptions" 
+                    auth="true">
+          </endpoint>
+
+          <endpoint url="/donors/payment_accounts/{{param.id}}/one_time_payment.json"
+                    method="post" 
+                    format="json" 
+                    description="Make a one-time donation" 
+                    auth="true">
+             <param name="id" 
+                    type="url" 
+                    description="Id of the payment_account" 
+                    default="1234"/>
+            <param name="amount" 
+                    type="integer" 
+                    description="Amount to donate" 
+                    default="20" 
+                    required="true"/>
+             <param name="endowment_id"
+                    type="integer"
+                    description="Id of the endowment to make donation to" 
+                    default="13" 
+                    required="true"/>                    
+          </endpoint>
+
+        <h3 class="white-text-shadow">Wish Endpoints</h3>
+
+          <endpoint url="/wishes.json" 
+                    method="post" 
+                    format="json" 
+                    description="Make a wish (submit a suggestion)" 
+                    auth="false">
+
+            <param name="wish_text" 
+                   type="string" 
+                   description="Your wish" 
+                   default="More charts!"/>
+            
+            <param name="page" 
+                    type="string" 
+                    description="What page does this list apply to?" 
+                    default="dashboard" 
+                    required="true"/>
+          </endpoint>
+          <endpoint url="/wishes/{{param.id}}.json"
+                    method="get" 
+                    format="json" 
+                    description="Get info about a single wish" 
+                    auth="false">
+
+             <param name="id"
+                    type="url" 
+                    description="Id of the wish to look up" 
+                    default="1234"/>
+          </endpoint>
+          <endpoint url="/wishes/random.json"
+                    method="get" 
+                    format="json" 
+                    description="Show random wish" 
+                    auth="false">
+          </endpoint>
       </api-docs>
 
     </div>
