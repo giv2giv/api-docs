@@ -1,0 +1,221 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="styles/214f46ee.main.css">
+
+  <link href="http://giv2giv.org/stylesheets/font-awesome.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="http://giv2giv.org/stylesheets/theme.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="http://giv2giv.org/stylesheets/fonts.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+  <body ng-app="docs.giv2giv.orgApp">
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <div style="height:50px; width:100%"></div>
+    <!-- Add your site or application content here -->
+    <header class="" id="masthead">
+    <nav class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+
+          <img src="http://giv2giv.org/images/giv2giv-org.png" width="20%">
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+    <div class="">
+
+      <api-docs url="api.giv2giv.org/api" proxy="" ssl="true" desc="Live docs for the Giv2Giv API">
+
+          
+          
+          <h3 class="white-text-shadow">SESSION MANAGEMENT</h3>
+
+          <endpoint url="/sessions/create.json" method="post" format="json" description="Create a user session">
+
+<!--        <header name="email" 
+                    type="string" 
+                    description="The email of the user you wish to authenticate."
+                    default="demo@example.com"/>
+            <query name="email" 
+                    type="string" 
+                    description="The email of the user you wish to authenticate."
+                    default="demo@example.com"/>
+            <post name="email" 
+                    type="string" 
+                    description="The email of the user you wish to authenticate."
+                    default="demo@example.com"/>
+            <json name="email" 
+                    type="string" 
+                    description="The email of the user you wish to authenticate."
+                    default="demo@example.com"/> -->
+
+            <param name="email" type="string" description="The email of the user you wish to authenticate" default="demo@example.com">
+
+            <param name="password" type="string" description="The password used to authenticate the user" default="Super@!rdUnguess#!@Passw*rd">
+          </endpoint>
+
+          <endpoint url="/sessions/destroy.json" method="post" format="json" description="Sign out destroy token" auth="true">
+          </endpoint>
+          
+          <h3 class="white-text-shadow">DONOR MANAGEMENT</h3>
+
+          <endpoint url="/donors.json" method="post" format="json" description="Create a new donor.">
+            
+            <param name="email" type="string" description="The email of the user you wish to authenticate" default="demo@example.com" required="true">
+            
+            <param name="password" type="string" description="The password used to authenticate the user" default="Super@!rdUnguess#!@Passw*rd" required="true">
+            
+            <param name="name" type="string" description="The username for this user" default="John" required="true">
+         
+          </endpoint>
+
+          <endpoint url="/donors.json" method="get" format="json" description="Show donor info" auth="true">
+          </endpoint>
+
+          <endpoint url="/donors.json" method="put" format="json" description="Update donor info" auth="true">
+
+            <param name="name" type="string" description="The username for this user" default="John" required="true">
+
+          </endpoint>
+
+
+          <h3 class="white-text-shadow">CHARITY MANAGEMENT</h3>
+
+          <endpoint url="/charity.json" method="get" format="json" description="Get a list of charities." auth="true">
+          </endpoint>
+
+          <endpoint url="/charity/{{param.id}}.json" method="get" format="json" description="Get info on a specific charity" auth="true">
+
+            <param name="id" type="url" description="Id of the charity account." default="1234">
+          </endpoint>
+
+          <h3 class="white-text-shadow">CHARITY GROUP MANAGEMENT</h3>
+
+          <endpoint url="/endowment/{{param.id}}/add_charity.json" method="post" format="json" description="Add a new charity to charity group">
+
+            <param name="id" type="url" description="Id of the charity group" default="1234">
+            
+            <param name="charity_id" type="string" description="The id of the charity" default="1234" required="true">
+         
+          </endpoint>
+
+          <endpoint url="/endowment.json" method="get" format="json" description="Get a list of charity groups" auth="true">
+         
+          </endpoint>
+
+          <endpoint url="/endowment.json" method="post" format="json" description="Create a new charity group" auth="true">
+
+              <param name="name" type="string" description="The name for this charity group" default="My Endowment" required="true">
+
+              <param name="amount" type="string" description="Minimum donation amount" default="5.00" required="true">
+
+              <param name="description" type="string" description="Description of charity group" default="A short description of charity group" required="true">
+         
+          </endpoint>
+
+          <endpoint url="/endowment/{{param.id}}.json" method="get" format="json" description="Get the details of a specific charity group" auth="true">
+
+            <param name="id" type="url" description="Id of the charity group account" default="1234">
+         
+          </endpoint>
+
+          <endpoint url="/endowment/{{param.id}}.json" method="put" format="json" description="Update the details of a specific charity group" auth="true">
+  
+            <!-- <uri name="charity_id" 
+                    type="url" 
+                    description="Id of the charity group account" 
+                    default="1234"></uri>
+            <header name="charity_id" 
+                  type="integer" 
+                  description="Id of the charity group account" 
+                  default="1234"></header>
+            <query name="charity_id" 
+                  type="url" 
+                  description="Id of the charity group account" 
+                  default="1234"></query>
+            <post name="charity_id" 
+                  type="url" 
+                  description="Id of the charity group account." 
+                  default="1234"></post>
+            <json name="charity_id" 
+                  type="url" 
+                  description="Id of the charity group account." 
+                  default="1234"></json> -->
+
+            <param name="id" type="url" description="Id of the charity group account." default="1234">
+         
+          </endpoint>
+
+          <h3 class="white-text-shadow">PAYMENT ACCOUNT MANAGEMENT</h3>
+
+          <endpoint url="/donors/payment_accounts.json" method="get" format="json" description="Get donor accounts." auth="true">
+          </endpoint>
+
+          <endpoint url="/donors/payment_accounts.json" method="post" format="json" description="Create a new donor." auth="true">
+
+            <param name="processor" type="string" description="Name of payment processor" default="Dwolla" required="true">
+
+            <param name="token" type="string" description="Payment token." default="1asdf23" required="true">
+          </endpoint>
+
+          <endpoint url="/donors/payment_accounts/{{param.id}}.json" method="get" format="json" description="Show specific payment account" auth="true">
+
+            <param name="id" type="url" description="Id of the payment account." default="1234">
+          </endpoint>
+
+           <endpoint url="/donors/payment_accounts/{{param.id}}.json" method="put" format="json" description="Update a specific payment account" auth="true">
+
+             <param name="id" type="url" description="Id of the payment account." default="1234">
+
+             <param name="processor" type="string" description="Name of payment processor" default="Dwolla" required="true">
+          </endpoint>
+
+          <endpoint url="/donors/payment_accounts/{{param.id}}.json" method="delete" format="json" description="Destroy payment account" auth="true">
+
+             <param name="id" type="url" description="Id of the payment account." default="1234">
+
+             <param name="processor" type="string" description="Name of account to destroy" default="Dwolla" required="true">
+          </endpoint>
+
+          <endpoint url="/donors/payment_accounts/{{param.id}}/donate.json" method="post" format="json" description="Donate using payment account" auth="true">
+
+            <param name="id" type="url" description="Id of the payment account." default="1234">
+            
+            <param name="amount" type="integer" description="Amount to donate." default="20" required="true">
+
+             <param name="endowment_id" type="integer" description="Id of charity group to make donation to." default="13" required="true">
+          </endpoint>
+
+      </api-docs>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+        <script src="scripts/76c21dca.plugins.js"></script>
+
+        <script src="scripts/6b865daa.modules.js"></script>
+
+        <script src="scripts/54f7c09d.scripts.js"></script>
+</body>
+</html>

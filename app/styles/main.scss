@@ -1,0 +1,149 @@
+$iconSpritePath: "../images/glyphicons-halflings.png";
+$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
+
+@import "bootstrap-sass/lib/bootstrap";
+
+
+
+/* Put your CSS here */
+html, body {
+  margin: 20px;
+}
+
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.endpoint{
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom:18px;
+    -webkit-box-shadow: 0px 0px 0px 4px #b5b5b5;
+    box-shadow: 0px 0px 0px 4px #b5b5b5;
+    border-radius: 4px;
+
+}
+
+.endpoint__method{
+    font-weight:bold;
+    font-size:1.2em;
+    padding:10px;
+    background: #d4e3aa; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #d4e3aa 0%, #99bb33 83%, #99bb33 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#d4e3aa), color-stop(83%,#99bb33), color-stop(100%,#99bb33)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  #d4e3aa 0%,#99bb33 83%,#99bb33 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  #d4e3aa 0%,#99bb33 83%,#99bb33 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  #d4e3aa 0%,#99bb33 83%,#99bb33 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center,  #d4e3aa 0%,#99bb33 83%,#99bb33 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d4e3aa', endColorstr='#99bb33',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color:#F8FAEF;
+    margin-right:10px;
+    border: 4px solid #dbe9af;
+    border-radius: 50px;
+    text-shadow: 0px 2px 2px rgba(150, 150, 150, 1);
+
+}
+
+.endpoint__url{
+    font-size:1.2em;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.endpoint__request-url{
+    font-size:1.2em;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.endpoint__url-label{
+    margin-right:10px;
+
+}
+
+.endpoint__heading{
+
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.endpoint_description{
+    font-size:1.1em;
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.endpoint__response-code{
+    margin-left:10px;
+    font-weight:bold;
+    color:white;
+    padding:5px;
+    display:block-inline;
+    border-radius:4px;
+}
+
+.endpoint__response-code--success{
+    background-color:green;
+
+}
+
+.endpoint__response-code--error{
+    background-color:orange;
+}
+
+.endpoint_url{
+    margin-right: 10px;
+}
+
+.endpoint__params{
+    margin-bottom:20px;
+}
+
+.endpoint__output{
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.endpoint__param{
+
+}
+
+.endpoint__param-input{
+    margin-right:10px;
+}
+
+.endpoint__param-label{
+    display:inline;
+    margin-right:10px;
+    width:100px;
+}
+
+.endpoint__param-type{
+    margin-right:10px;
+}
+
+.white-text-shadow{
+    text-shadow: 1px 1px 1px white;
+}
+
+
+.btn{
+    background-image:none;
+    background-color:white;
+    border-radius: 4px;
+    border:none;
+    -webkit-box-shadow: 0px 0px 0px 4px #b5b5b5;
+    box-shadow: 0px 0px 0px 4px #b5b5b5;
+    font-weight:bold;
+    color:rgba(100, 100, 100, 0.9);
+    font-size:1.2em;
+}
+
+.btn:hover{
+    background-color: #b5b5b5;
+    color:white;
+}
