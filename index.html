@@ -98,17 +98,17 @@
 
           </endpoint>
 
-          <endpoint url="/donors/forgot_password.json" method="put" format="json" description="Send password reset email" auth="true">
+          <endpoint url="/donors/forgot_password.json" method="post" format="json" description="Send password reset email" auth="false">
 
             <param name="email" type="string" description="Email to send reset instructions & reset token to" default="demo@example.com" required="true">
 
           </endpoint>
 
-          <endpoint url="/donors/reset_password.json" method="put" format="json" description="Reset password" auth="true">
+          <endpoint url="/donors/reset_password.json" method="get" format="json" description="Reset password" auth="true">
 
             <param name="reset_token" type="string" description="token from forgot_password.json email" default="9YRr01DshTS9E_wenaqg0w" required="true">
 
-            <param name="password" type="string" description="New password" default="Super@!rdUnguess#!@Passw*rd" required="true">
+            <param name="password" type="string" description="New password" default="Super@!rdUnguess#!@Passw*rd" required="false">
 
           </endpoint>
 
