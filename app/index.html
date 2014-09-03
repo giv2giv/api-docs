@@ -161,9 +161,21 @@
                     type="date" 
                     description="End date." 
                     default="2020-01-01"/>
-            
-
           </endpoint>
+
+	  <endpoint url="/donors/send_invite.json"
+		    method="post"
+		    format="json"
+		    description="Invite a friend to giv2giv.org via email"
+		    auth="true">
+
+	    <param name="email"
+                    type="string"
+                    description="The email of the user you wish to invite"
+                    default="demo@example.com"
+                    required="true"></param>
+	    
+	  </endpoint>
 
           <endpoint url="/donors/forgot_password.json"
                     method="post" 
