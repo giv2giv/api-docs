@@ -166,10 +166,10 @@
           </endpoint>
 
           <endpoint url="/donors/forgot_password.json"
-                    method="put" 
+                    method="post" 
                     format="json"
                     description="Send password reset email" 
-                    auth="true">
+                    auth="false">
 
             <param name="email"
                    type="string" 
@@ -180,7 +180,7 @@
           </endpoint>
 
           <endpoint url="/donors/reset_password.json"
-                    method="put" 
+                    method="get" 
                     format="json"
                     description="Reset password" 
                     auth="true">
@@ -195,7 +195,7 @@
                    type="string" 
                    description="New password" 
                    default="Super@!rdUnguess#!@Passw*rd"
-                   required="true"/>
+                   required="false"/>
 
           </endpoint>
 
