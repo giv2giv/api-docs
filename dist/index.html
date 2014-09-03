@@ -180,6 +180,9 @@
           <endpoint url="/endowment/my_endowments.json" method="get" format="json" description="Show endowments I created" auth="true">
           </endpoint>
 
+	  <endpoint url="/endowment/trending_endowments.json" method="get" format="json" description="Show trending endowments (ordered by most donations in last 30 days)" auth="false">
+          </endpoint>
+
           <endpoint url="/endowment/find_by_slug.json" method="get" format="json" description="Find endowment by slug" auth="true">
               <param name="slug" type="string" description="URL-friendly endowment name" default="the-hunger-endowment">
           </endpoint>
