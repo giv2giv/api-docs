@@ -161,27 +161,15 @@
                     type="date" 
                     description="End date." 
                     default="2020-01-01"/>
+            
+
           </endpoint>
 
-	  <endpoint url="/donors/send_invite.json"
-		    method="post"
-		    format="json"
-		    description="Invite a friend to giv2giv.org via email"
-		    auth="true">
-
-	    <param name="email"
-                    type="string"
-                    description="The email of the user you wish to invite"
-                    default="demo@example.com"
-                    required="true"></param>
-	    
-	  </endpoint>
-
           <endpoint url="/donors/forgot_password.json"
-                    method="post" 
+                    method="put" 
                     format="json"
                     description="Send password reset email" 
-                    auth="false">
+                    auth="true">
 
             <param name="email"
                    type="string" 
@@ -192,7 +180,7 @@
           </endpoint>
 
           <endpoint url="/donors/reset_password.json"
-                    method="get" 
+                    method="put" 
                     format="json"
                     description="Reset password" 
                     auth="true">
@@ -207,7 +195,7 @@
                    type="string" 
                    description="New password" 
                    default="Super@!rdUnguess#!@Passw*rd"
-                   required="false"/>
+                   required="true"/>
 
           </endpoint>
 
@@ -248,6 +236,25 @@
                     type="url" 
                     description="Id of the charity account." 
                     default="1234"/>
+          </endpoint>
+          
+          <endpoint url="/charity/near.json"
+                    method="get" 
+                    format="json"
+                    description="List charities near a location (default location geocoded by requesting IP)"
+                    auth="false">
+            <param name="latitude" 
+                    type="float"
+                    description="Latitude" 
+                    default="37.658235"/>
+            <param name="longitude" 
+                    type="float"
+                    description="Longitude" 
+                    default="-77.404534"/>
+            <param name="radius" 
+                    type="integer"
+                    description="Radius" 
+                    default="25"/>
           </endpoint>
 
           <h3 class="white-text-shadow">Endowment endpoints</h3>
@@ -373,12 +380,31 @@
                     description="Show endowments I created"
                     auth="true">
           </endpoint>
-
-	  <endpoint url="/endowment/trending_endowments.json"
-                    method="get"
+          
+          <endpoint url="/endowment/trending.json"
+                    method="get" 
                     format="json"
-                    description="Show trending endowments (ordered by most donations in last 30 days)"
+                    description="Show trending endowments"
                     auth="false">
+          </endpoint>
+          
+          <endpoint url="/endowment/near.json"
+                    method="get" 
+                    format="json"
+                    description="List endowments granting to charities near a location (default location geocoded by requesting IP)"
+                    auth="false">
+            <param name="latitude" 
+                    type="float"
+                    description="Latitude" 
+                    default="37.658235"/>
+            <param name="longitude" 
+                    type="float"
+                    description="Longitude" 
+                    default="-77.404534"/>
+            <param name="radius" 
+                    type="integer"
+                    description="Radius" 
+                    default="25"/>
           </endpoint>
 
           <endpoint url="/endowment/find_by_slug.json"
@@ -391,6 +417,8 @@
                     description="URL-friendly endowment name"
                     default="the-hunger-endowment"/>
           </endpoint>
+          
+
 
           <endpoint url="/endowment/{{param.id}}/anonymous_donation.json"
                     method="get" 
