@@ -94,25 +94,21 @@
             <param name="endowment_id" type="integer" description="Id of the endowment" default="1234">
             <param name="start_date" type="date" description="Start date" default="2000-01-01">
             <param name="end_date" type="date" description="End date." default="2020-01-01">
+            
+
           </endpoint>
 
-	  <endpoint url="/donors/send_invite.json" method="post" format="json" description="Invite a friend to giv2giv.org via email" auth="true">
-
-	    <param name="email" type="string" description="The email of the user you wish to invite" default="demo@example.com" required="true">
-	    
-	  </endpoint>
-
-          <endpoint url="/donors/forgot_password.json" method="post" format="json" description="Send password reset email" auth="false">
+          <endpoint url="/donors/forgot_password.json" method="put" format="json" description="Send password reset email" auth="true">
 
             <param name="email" type="string" description="Email to send reset instructions & reset token to" default="demo@example.com" required="true">
 
           </endpoint>
 
-          <endpoint url="/donors/reset_password.json" method="get" format="json" description="Reset password" auth="true">
+          <endpoint url="/donors/reset_password.json" method="put" format="json" description="Reset password" auth="true">
 
             <param name="reset_token" type="string" description="token from forgot_password.json email" default="9YRr01DshTS9E_wenaqg0w" required="true">
 
-            <param name="password" type="string" description="New password" default="Super@!rdUnguess#!@Passw*rd" required="false">
+            <param name="password" type="string" description="New password" default="Super@!rdUnguess#!@Passw*rd" required="true">
 
           </endpoint>
 
@@ -130,6 +126,12 @@
           <endpoint url="/charity/{{param.id}}.json" method="get" format="json" description="Get info on a specific charity" auth="true">
 
             <param name="id" type="url" description="Id of the charity account." default="1234">
+          </endpoint>
+          
+          <endpoint url="/charity/near.json" method="get" format="json" description="List charities near a location (default location geocoded by requesting IP)" auth="false">
+            <param name="latitude" type="float" description="Latitude" default="37.658235">
+            <param name="longitude" type="float" description="Longitude" default="-77.404534">
+            <param name="radius" type="integer" description="Radius" default="25">
           </endpoint>
 
           <h3 class="white-text-shadow">Endowment endpoints</h3>
@@ -183,13 +185,21 @@
 
           <endpoint url="/endowment/my_endowments.json" method="get" format="json" description="Show endowments I created" auth="true">
           </endpoint>
-
-	  <endpoint url="/endowment/trending_endowments.json" method="get" format="json" description="Show trending endowments (ordered by most donations in last 30 days)" auth="false">
+          
+          <endpoint url="/endowment/trending.json" method="get" format="json" description="Show trending endowments" auth="false">
+          </endpoint>
+          
+          <endpoint url="/endowment/near.json" method="get" format="json" description="List endowments granting to charities near a location (default location geocoded by requesting IP)" auth="false">
+            <param name="latitude" type="float" description="Latitude" default="37.658235">
+            <param name="longitude" type="float" description="Longitude" default="-77.404534">
+            <param name="radius" type="integer" description="Radius" default="25">
           </endpoint>
 
           <endpoint url="/endowment/find_by_slug.json" method="get" format="json" description="Find endowment by slug" auth="true">
               <param name="slug" type="string" description="URL-friendly endowment name" default="the-hunger-endowment">
           </endpoint>
+          
+
 
           <endpoint url="/endowment/{{param.id}}/anonymous_donation.json" method="get" format="json" description="Make donation to endowment without giv2giv account" auth="true">
               <param name="id" type="url" description="Id of the endowment account" default="1234">
@@ -279,9 +289,9 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 
-        <script src="scripts/d41d8cd9.plugins.js"></script>
+        <script src="scripts/3ac34743.plugins.js"></script>
 
-        <script src="scripts/d41d8cd9.modules.js"></script>
+        <script src="scripts/6b865daa.modules.js"></script>
 
         <script src="scripts/54f7c09d.scripts.js"></script>
 </body>
